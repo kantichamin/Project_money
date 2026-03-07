@@ -1,13 +1,14 @@
 #include "App.h"
 #include "MainFrame.h"
+#include <wx/wx.h>
 
-wxIMPLEMENT_APP(MyApp);
+wxIMPLEMENT_APP(App);
 
-bool MyApp::OnInit() {
-    MainFrame* frame = new MainFrame("Finance");
-    frame->SetClienSize(800, 750);
-    frame->CenterOnScreen();
-    frame->Show();
-    return true;
-
+bool App::OnInit()
+{
+	MainFrame* mainframe = new MainFrame(wxT("แบบทดสอบการลงทุน"));
+	mainframe->SetClientSize(800, 600);
+	mainframe->Center();
+	mainframe->Show();
+	return true;
 }
