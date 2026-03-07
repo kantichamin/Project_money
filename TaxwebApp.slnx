@@ -1,0 +1,7 @@
+<Solution>
+  <Configurations>
+    <Platform Name="x64" />
+    <Platform Name="x86" />
+  </Configurations>
+  <Project Path="TaxwebApp/TaxwebApp.vcxproj" Id="c1572442-cf94-46a8-9f30-2d0d250a7d24" />
+</Solution>
