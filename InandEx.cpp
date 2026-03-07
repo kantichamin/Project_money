@@ -4,6 +4,7 @@
 #include "MySummaryPanel.h"
 #include "Account.h"
 #include "listBox.h"
+#include "MainFrame.h"
 
 using namespace std;
 wxString InandEx::AskAccountName() {
@@ -62,18 +63,6 @@ void InandEx::SaveAccounts() {
     
 }
 
-void InandEx::OnClose(wxCloseEvent& event) {
-
-    int ans = wxMessageBox("GOOD ORGANIZE TODAY!!", "Exit", wxYES_NO | wxCANCEL);
-    if (ans == wxYES) {
-        SaveAccounts();
-        Wish_panel->SaveWish();
-        SaveCate();
-    }
-    else return;
-
-    event.Skip();
-}
 
 bool InandEx::IsTodayAlreayWritten(const string& filename, const string& date) {
     ifstream file(filename);
@@ -113,9 +102,8 @@ void InandEx::LoadCate() {
     catfile.close();
 }
 
-InandEx::InandEx(cwxWindow* parent, wxPanel* main_panel)
-    : wxPanel(parent, wxID_ANY)
-{
+InandEx::InandEx(wxWindow* parent, wxPanel* main_panel)
+    : wxPanel(parent, wxID_ANY) {
     mainpanel = main_panel;
     panel = new wxPanel(this);
     
@@ -346,8 +334,10 @@ InandEx::InandEx(cwxWindow* parent, wxPanel* main_panel)
     back->Bind(wxEVT_BUTTON, [this](wxCommandEvent&) {
         this->Hide();
         mainpanel->Show();
-        mainpanel->GetParent()->Layout();
+        MainFrame* frame = (MainFrame*)mainpanel->GetParent();
+		frame->Refreshinfo();
+		frame->Layout();
         });
 
-    Bind(wxEVT_CLOSE_WINDOW, &mainframe::OnClose, this);
+    
 }

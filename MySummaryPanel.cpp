@@ -11,7 +11,7 @@ void MySummaryPanel::Calextotal() {
 	string line,currentmonth,cate;
 	MandCate excate;
 	while (getline(file, line)) {
-		if (line.find("/") != string::npos) currentmonth = line.substr(3, 2);
+		if (line.find("/") != string::npos) currentmonth = line.substr(3, 5);
 		else {
 			int pos = line.find("-");
 			int pos1 = line.find("-", pos + 1);
@@ -19,7 +19,8 @@ void MySummaryPanel::Calextotal() {
 			if (pos != string::npos && pos1 != string::npos) {
 				cate = line.substr(pos1 + 1);
 				cate.erase(0, cate.find_first_not_of(" "));
-				excate.monthlycatett[cate] += wxAtof(line.substr(0, pos));
+				double value = wxAtof(line.substr(0, pos));
+				excate.monthlycatett[cate] += value;
 				monthlyextotal[currentmonth] = excate;
 				ttex += wxAtof(line.substr(0, pos));
 			}
@@ -27,6 +28,17 @@ void MySummaryPanel::Calextotal() {
 		}
 	}
 	file.close();
+
+	totalexyear = 0;
+
+	for (auto& month : monthlyextotal) {
+
+		if (month.first.find(year.ToStdString()) != string::npos) {
+
+			for (auto& cate : month.second.monthlycatett) totalexyear += cate.second;
+
+		}
+	}
 }
 
 void MySummaryPanel::Calintotal() {
@@ -35,7 +47,7 @@ void MySummaryPanel::Calintotal() {
 	string line, currentmonth;
 	double in;
 	while (getline(file, line)) {
-		if (line.find("/") != string::npos) currentmonth = line.substr(3, 2);
+		if (line.find("/") != string::npos) currentmonth = line.substr(3, 5);
 		else {
 			int pos = line.find("-");
 			if (pos != string::npos) {
@@ -45,6 +57,17 @@ void MySummaryPanel::Calintotal() {
 		}
 	}
 	file.close();
+
+	totalinyear = 0;
+
+	for (auto& month : monthlyintotal) {
+
+		if (month.first.find(year.ToStdString()) != string::npos) {
+
+			totalinyear += month.second;
+			
+		}
+	}
 }
 
 void MySummaryPanel::OnPaintper(wxPaintEvent& event) {
