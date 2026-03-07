@@ -15,6 +15,8 @@ using namespace std;
 class InandEx : public wxPanel
 {
 public:
+	MyWishlistPanel* Wish_panel;
+	MySummaryPanel* Summary_panel;
 	
 	wxDateTime now = wxDateTime::Now();
 	wxString dateStr = now.Format("%d/%m/%y");
@@ -22,7 +24,6 @@ public:
 	int AskBalance();
 	void LoadAccounts();
 	void SaveAccounts();
-	void OnClose(wxCloseEvent& event);
 	bool IsTodayAlreayWritten(const string& filename, const string& date);
 	void SaveCate();
 	void LoadCate();
@@ -37,8 +38,7 @@ private:
 	wxScrolledWindow* inScroll;
 	wxScrolledWindow* exScroll;
 	MyKeepPanel* Keep_panel;
-	MyWishlistPanel* Wish_panel;
-	MySummaryPanel* Summary_panel;
+	
 	std::vector<Account> accounts;
 	std::vector<AccountBox*> boxes;
 	std::vector<WishList>* goals;

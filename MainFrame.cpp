@@ -67,8 +67,8 @@ MainFrame::MainFrame(const wxString& title)
 	btnSizer->Add(taxBtn, 0, wxRIGHT, 10);
 	btnSizer->Add(InvestBtn, 0, wxRIGHT, 10);
 	mainSizer->Add(btnSizer, 0, wxLEFT, 20);
-	
-	
+
+
 
 	//ส่วนกลาง สรุปเงิน (ซ้าย) และ กราฟ (ขวา)
 	wxBoxSizer* midSizer = new wxBoxSizer(wxHORIZONTAL);
@@ -78,7 +78,7 @@ MainFrame::MainFrame(const wxString& title)
 	leftBox->GetStaticBox()->SetForegroundColour(*wxWHITE);
 	leftBox->SetMinSize(wxSize(650, -1));
 
-	
+
 	wxBoxSizer* row1 = new wxBoxSizer(wxHORIZONTAL);
 	wxStaticText* lbl1 = new wxStaticText(mainPanel, wxID_ANY, L"รายรับรวม:");
 	incomeText = new wxStaticText(mainPanel, wxID_ANY, L"+ ฿ 0");
@@ -122,7 +122,7 @@ MainFrame::MainFrame(const wxString& title)
 	row4->Add(lbl4, 0, wxALL, 5);
 	row4->Add(taxText, 0, wxALL, 5);
 	leftBox->Add(row4, 0, wxEXPAND);
-	
+
 	midSizer->Add(leftBox, 1, wxEXPAND | wxALL, 10);
 
 	// ฝั่งขวา กราฟวงกลมและช่องภาษี
@@ -173,7 +173,7 @@ MainFrame::MainFrame(const wxString& title)
 	mainPanel->SetSizer(mainSizer);
 
 	// เชื่อมหน้าอื่นเมื่อกดปุ่ม
-	
+
 	inandexBtn->Bind(wxEVT_BUTTON, [this](wxCommandEvent&) {
 		mainPanel->Hide();
 		inandexPanel->Show();

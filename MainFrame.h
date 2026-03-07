@@ -6,9 +6,19 @@
 class MainFrame : public wxFrame
 {
 public:
+	void Refreshinfo();
+    void OnClose(wxCloseEvent& event);
     MainFrame(const wxString& title);
 
 private:
+    wxStaticText* taxText;
+    wxStaticText* incomeText;
+    wxStaticText* expenseText;
+    wxStaticText* netText;
+    double net;
+    double ttex;
+    double ttin;
+    wxPanel* mainPanel;
     wxListCtrl* m_listCtrl;
     InandEx* inandexPanel;
 };

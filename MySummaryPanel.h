@@ -14,6 +14,11 @@ struct MandCate {
 class MySummaryPanel : public wxPanel
 {
 public:
+	map<string, double> monthlyintotal;
+	map<string, MandCate> monthlyextotal;
+	double totalexyear;
+	double totalinyear;
+
 	void RefreshSummary();
 	void Calextotal();
 	void Calintotal();
@@ -22,9 +27,8 @@ public:
 	MySummaryPanel(wxWindow* parent, wxPanel* main_panel);
 
 private:
+	
 	wxPanel* chart;
-	map<string, double> monthlyintotal;
-	map<string, MandCate> monthlyextotal;
 	wxLocale locale;
 	wxDateTime now = wxDateTime::Now();
 	wxString month;
@@ -33,7 +37,8 @@ private:
 	wxStaticText* tt;
 	wxPanel* mainpanel;
 	wxPanel* percent;
-	wxString monthnum = now.Format("%m");
+	wxString monthnum = now.Format("%m/%y");
+	wxString year = now.Format("%y");
 	double ttex = 0;
 };
 
