@@ -3,6 +3,7 @@
 #include <wx/spinctrl.h>
 #include <wx/scrolwin.h>
 
+
 MainFrame::MainFrame(const wxString& title): wxFrame(nullptr, wxID_ANY, title)
 {
 	//------- Panel ใหญ่ หน้าแบบทดสอบ --------//
