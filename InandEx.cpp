@@ -119,14 +119,13 @@ InandEx::InandEx(wxWindow* parent, wxPanel* main_panel)
     Wish_panel->Show(false);
     Summary_panel->Show(false);
     
-    
     SetBackgroundColour(wxColour(80, 80, 80));
     
-
     // ===== top bar account =====
     wxPanel* topBar = new wxPanel(panel);
     topBar->SetBackgroundColour(wxColour(60, 60, 60));
     wxStaticText* titleText = new wxStaticText(topBar, wxID_ANY, "Account");
+    titleText->SetFont(wxFont(12, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_BOLD));
     titleText->SetForegroundColour(*wxWHITE);
     
     
@@ -171,6 +170,7 @@ InandEx::InandEx(wxWindow* parent, wxPanel* main_panel)
     wxPanel* topBarin = new wxPanel(panel);
     topBarin->SetBackgroundColour(wxColour(60, 60, 60));
     wxStaticText* titleTextin = new wxStaticText(topBarin, wxID_ANY, "Income");
+    titleTextin->SetFont(wxFont(12, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_BOLD));
     titleTextin->SetForegroundColour(*wxWHITE);
 
     // ===== income =====
@@ -178,7 +178,7 @@ InandEx::InandEx(wxWindow* parent, wxPanel* main_panel)
     date->SetForegroundColour(*wxWHITE);
     wxButton* Addincome = new wxButton(panel, wxID_ANY, "+",wxDefaultPosition,wxSize(20,20));
     Addincome->SetBackgroundColour(wxColor(60, 60, 60));
-    Addincome->SetForegroundColour(*wxWHITE);
+    Addincome->SetForegroundColour(wxColor(100, 255, 100));
 
     inScroll = new wxScrolledWindow(panel, wxID_ANY, wxDefaultPosition, wxSize(780, 120));
     inScroll->SetBackgroundColour(wxColour(80, 80, 80));
@@ -198,10 +198,11 @@ InandEx::InandEx(wxWindow* parent, wxPanel* main_panel)
     wxPanel* topBarex = new wxPanel(panel);
     topBarex->SetBackgroundColour(wxColour(60, 60, 60));
     wxStaticText* titleTextex = new wxStaticText(topBarex, wxID_ANY, "Expense");
+	titleTextex->SetFont(wxFont(12, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_BOLD));
     titleTextex->SetForegroundColour(*wxWHITE);
     wxButton* Addexpense = new wxButton(panel, wxID_ANY, "+", wxDefaultPosition, wxSize(20, 20));
     Addexpense->SetBackgroundColour(wxColor(60, 60, 60));
-    Addexpense->SetForegroundColour(*wxWHITE);
+    Addexpense->SetForegroundColour(wxColor(255, 100, 100));
     wxButton* Addcategory = new wxButton(panel, wxID_ANY, L"เพิ่มหมวดหมู่");
     Addcategory->SetBackgroundColour(wxColor(60, 60, 60));
     Addcategory->SetForegroundColour(*wxWHITE);

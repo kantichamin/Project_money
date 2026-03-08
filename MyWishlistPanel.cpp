@@ -67,6 +67,7 @@ MyWishlistPanel::MyWishlistPanel(wxWindow* parent, wxPanel* main_panel, std::vec
 	wxPanel* topbarwish = new wxPanel(this);
 	topbarwish->SetBackgroundColour(wxColor(60, 60, 60));
 	wxStaticText* titletext = new wxStaticText(topbarwish, wxID_ANY, "Wish List");
+	titletext->SetFont(wxFont(12, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_BOLD));
 	titletext->SetForegroundColour(*wxWHITE);
 	wxButton* back = new wxButton(topbarwish, wxID_ANY, "<<", wxDefaultPosition, wxSize(30, 20));
 	back->SetBackgroundColour(wxColor(60, 60, 60));

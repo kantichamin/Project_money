@@ -109,7 +109,7 @@ void MySummaryPanel::OnPaintcir(wxPaintEvent& event) {
 	wxPaintDC dc(chart);
 	int centerX = 200;
 	int centerY = 150;
-	int radius = 100;
+	int radius = 150;
 	double startAngle = 0;
 	int x = 50;
 	string m = monthnum.ToStdString();
@@ -121,9 +121,9 @@ void MySummaryPanel::OnPaintcir(wxPaintEvent& event) {
 	if (ttex <= 0)
 		return;
 
-	int i = 100, j = 100, k = 100;
+	int i = 275, j = 50, k = 100;
 
-	int legendX = 20;
+	int legendX = 370;
 	int legendY = 20;
 	int boxSize = 15;
 
@@ -157,7 +157,7 @@ void MySummaryPanel::OnPaintcir(wxPaintEvent& event) {
 		legendY += 25;   
 
 		i += 20;
-		j += 20;
+		j += 50;
 		k += 20;
 	}
 	
@@ -173,6 +173,7 @@ MySummaryPanel::MySummaryPanel(wxWindow* parent, wxPanel* main_panel, std::vecto
 	wxPanel* topbarsummary = new wxPanel(this);
 	topbarsummary->SetBackgroundColour(wxColor(60, 60, 60));
 	wxStaticText* titletext = new wxStaticText(topbarsummary, wxID_ANY, "Summary");
+	titletext->SetFont(wxFont(12, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_BOLD));
 	titletext->SetForegroundColour(*wxWHITE);
 	wxButton* back = new wxButton(topbarsummary, wxID_ANY, "<<", wxDefaultPosition, wxSize(30, 20));
 	back->SetBackgroundColour(wxColor(60, 60, 60));
@@ -180,23 +181,23 @@ MySummaryPanel::MySummaryPanel(wxWindow* parent, wxPanel* main_panel, std::vecto
 
 	month = now.Format("%B");
 	wxStaticText* mon = new wxStaticText(this, wxID_ANY, month);
-	wxFont font(20,                 
-		wxFONTFAMILY_DEFAULT,
-		wxFONTSTYLE_NORMAL,
-		wxFONTWEIGHT_BOLD);
+	wxFont font(25, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_BOLD);
 	mon->SetFont(font);
 	mon->SetForegroundColour(*wxWHITE);
 	double intt= monthlyintotal[monthnum.ToStdString()];
 	wxString intexttt = wxString::Format("%.2f", intt);
 	ttincome = new wxStaticText(this, wxID_ANY, L"รายได้ทั้งหมด : "+intexttt+L" บาท");
+	ttincome->SetFont(wxFont(13, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_BOLD));
 	ttincome->SetForegroundColour(*wxWHITE);
 	double extt = ttex;
 	wxString extexttt = wxString::Format("%.2f", extt);
 	ttexpense = new wxStaticText(this, wxID_ANY, L"รายจ่ายทั้งหมด: "+extexttt+L" บาท");
+	ttexpense->SetFont(wxFont(13, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_BOLD));
 	ttexpense->SetForegroundColour(*wxWHITE);
 	double ttm = Calbalance() + intt - extt;
 	wxString ttmtext = wxString::Format("%.2f", ttm);
 	tt = new wxStaticText(this, wxID_ANY, L"เงินคงเหลือสุทธิ: " + ttmtext);
+	tt->SetFont(wxFont(13, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_BOLD));
 	tt->SetForegroundColour(*wxWHITE);
 	percent = new wxPanel(this, wxID_ANY, wxDefaultPosition, wxSize(400, 50));
 	percent->SetBackgroundColour(wxColor(80, 80, 80));

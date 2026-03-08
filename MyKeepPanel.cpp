@@ -11,10 +11,10 @@ void MyKeepPanel::RefreshAccounts() {
 void MyKeepPanel::OnPaint(wxPaintEvent& event) {
 	wxPaintDC dc(bottlepanel);
 
-	int bottleWidth = 100;
-	int bottleHeight = 200;
+	int bottleWidth = 150;
+	int bottleHeight = 300;
 
-	int x = 40;   
+	int x = 0;   
 	int y = 20;                          
 
 	int waterHeight = bottleHeight * percent / 100.0;
@@ -37,11 +37,13 @@ void MyKeepPanel::OnConfirm(wxCommandEvent& event) {
 
 	if (goalAmount <= 0) return;
 	goalText->SetLabel(wxString::Format("%.0f", goalAmount));
+	goalText->SetFont(wxFont(10, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_BOLD));
 	goal->Hide();
 	goalText->Show();
 
 	wxString selectedAcc = acc->GetStringSelection();
 	accText->SetLabel(selectedAcc);
+	accText->SetFont(wxFont(10, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_BOLD));
 	acc->Hide();
 	accText->Show();
 
@@ -106,6 +108,7 @@ MyKeepPanel::MyKeepPanel(wxWindow* parent,wxPanel* main_panel, std::vector<Accou
 	wxPanel* topbarkeep = new wxPanel(this);
 	topbarkeep->SetBackgroundColour(wxColor(60, 60, 60));
 	wxStaticText* titletext = new wxStaticText(topbarkeep, wxID_ANY, "Keep Challance");
+	titletext->SetFont(wxFont(12, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_BOLD));
 	titletext->SetForegroundColour(*wxWHITE);
 	wxButton* back = new wxButton(topbarkeep, wxID_ANY, "<<", wxDefaultPosition, wxSize(30, 20));
 	back->SetBackgroundColour(wxColor(60, 60, 60));
@@ -113,16 +116,21 @@ MyKeepPanel::MyKeepPanel(wxWindow* parent,wxPanel* main_panel, std::vector<Accou
 
 	// ===== goal =====
 	ask = new wxStaticText(this, wxID_ANY, "I want to keep ");
+	ask->SetFont(wxFont(10, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_BOLD));
 	ask->SetForegroundColour(*wxWHITE);
 	goal = new wxTextCtrl(this, wxID_ANY, "");
 	ask2 = new wxStaticText(this, wxID_ANY, "Today you have ");
+	ask2->SetFont(wxFont(10, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_BOLD));
 	ask2->SetForegroundColour(*wxWHITE);
 	save = new wxButton(this, wxID_ANY, "Save", wxDefaultPosition, wxSize(40, 20));
+	save->SetFont(wxFont(10, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_BOLD));
 	save->SetForegroundColour(*wxWHITE);
 	save->SetBackgroundColour(wxColor(80,80,80));
-	money = new wxStaticText(this, wxID_ANY, "      ");
+	money = new wxStaticText(this, wxID_ANY, "   ");
+	money->SetFont(wxFont(10, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_BOLD));
 	money->SetForegroundColour(*wxWHITE);
-	from = new wxStaticText(this, wxID_ANY, "from");
+	from = new wxStaticText(this, wxID_ANY, "   from ");
+	from->SetFont(wxFont(10, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_BOLD));
 	from->SetForegroundColour(*wxWHITE);
 	wxArrayString names;
 	for (const auto& a : *accounts) names.Add(wxString::FromUTF8(a.name));
@@ -157,6 +165,9 @@ MyKeepPanel::MyKeepPanel(wxWindow* parent,wxPanel* main_panel, std::vector<Accou
 
 		if (percent > 100) percent = 100;
 		money->SetLabel( wxString::Format("%.0f", moneyAdd));
+		int i = acc->GetSelection();
+		(*accounts)[i].sub(moneyAdd);
+		(*boxes)[i]->refresh();
 		bottlepanel->Refresh();
 		SaveKeep();
 		});
@@ -190,9 +201,9 @@ MyKeepPanel::MyKeepPanel(wxWindow* parent,wxPanel* main_panel, std::vector<Accou
 	topbarkeep->SetSizer(topSizer);
 
 	wxBoxSizer* box = new wxBoxSizer(wxHORIZONTAL);
-	box->Add(ask, 0, wxALL, 10);
-	box->Add(goal, 0, wxALL, 10);
-	box->Add(goalText, 0, wxALL, 10);
+	box->Add(ask, 0, wxALL, 5);
+	box->Add(goal, 0, wxALL, 5);
+	box->Add(goalText, 0, wxALL, 5);
 
 	wxBoxSizer* box2 = new wxBoxSizer(wxHORIZONTAL);
 	box2->Add(ask2, 0, wxALL, 5);
@@ -204,7 +215,7 @@ MyKeepPanel::MyKeepPanel(wxWindow* parent,wxPanel* main_panel, std::vector<Accou
 	box2->Add(ok, 0, wxALL, 5);
 	box2->Add(reset, 0, wxALL, 5);
 
-	bottlepanel = new wxPanel(this, wxID_ANY, wxDefaultPosition, wxSize(200, 300));
+	bottlepanel = new wxPanel(this, wxID_ANY, wxDefaultPosition, wxSize(250, 350));
 	bottlepanel->SetBackgroundColour(wxColor(80,80,80));
 	bottlepanel->Bind(wxEVT_PAINT, &MyKeepPanel::OnPaint, this);
 
@@ -212,9 +223,11 @@ MyKeepPanel::MyKeepPanel(wxWindow* parent,wxPanel* main_panel, std::vector<Accou
 
 	wxBoxSizer* mainSizer = new wxBoxSizer(wxVERTICAL);
 	mainSizer->Add(topbarkeep,0,wxEXPAND);
-	mainSizer->Add(box, 0, wxALL);
-	mainSizer->Add(box2, 0, wxALL);
-	mainSizer->Add(bottlepanel, 0, wxALL, 20);
+	mainSizer->AddSpacer(30);
+	mainSizer->Add(bottlepanel, 0, wxALL | wxALIGN_CENTER, 20);
+	mainSizer->AddSpacer(20);
+	mainSizer->Add(box, 0,wxALL,10);
+	mainSizer->Add(box2, 0, wxALL,10);
 	
 
 	this->SetSizer(mainSizer);

@@ -22,7 +22,7 @@
     <ClInclude Include="Account.h" />
     <ClInclude Include="AccountBox.h" />
     <ClInclude Include="App.h" />
-    <ClInclude Include="CustomDonutChart.h" />
+    <ClInclude Include="BarChartPanel.h" />
     <ClInclude Include="InandEx.h" />
     <ClInclude Include="Invest.h" />
     <ClInclude Include="listBox.h" />
@@ -38,7 +38,7 @@
     <ClCompile Include="Account.cpp" />
     <ClCompile Include="AccountBox.cpp" />
     <ClCompile Include="App.cpp" />
-    <ClCompile Include="CustomDonutChart.cpp" />
+    <ClCompile Include="BarChartPanel.cpp" />
     <ClCompile Include="InandEx.cpp" />
     <ClCompile Include="Invest.cpp" />
     <ClCompile Include="listBox.cpp" />
