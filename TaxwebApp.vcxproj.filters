@@ -24,6 +24,39 @@
     <ClInclude Include="App.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Account.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AccountBox.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="InandEx.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Invest.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="listBox.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MyKeepPanel.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MySummaryPanel.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MyWishlistPanel.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Quiz.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="WishList.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="WishListBox.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="App.cpp">
@@ -33,6 +66,39 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="CustomDonutChart.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Account.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="AccountBox.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="InandEx.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Invest.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="listBox.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MyKeepPanel.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MySummaryPanel.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MyWishlistPanel.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Quiz.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="WishList.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="WishListBox.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
