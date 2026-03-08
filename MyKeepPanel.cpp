@@ -1,11 +1,11 @@
-#include "MyKeepPanel.h"
+﻿#include "MyKeepPanel.h"
 #include <fstream>
 
 using namespace std;
 void MyKeepPanel::RefreshAccounts() {
 	acc->Clear();
 	for (const auto& a : *accounts)
-		acc->Append(a.name);
+		acc->Append(wxString::FromUTF8(a.name));
 }
 
 void MyKeepPanel::OnPaint(wxPaintEvent& event) {
@@ -125,7 +125,7 @@ MyKeepPanel::MyKeepPanel(wxWindow* parent,wxPanel* main_panel, std::vector<Accou
 	from = new wxStaticText(this, wxID_ANY, "from");
 	from->SetForegroundColour(*wxWHITE);
 	wxArrayString names;
-	for (const auto& a : *accounts) names.Add(a.name);
+	for (const auto& a : *accounts) names.Add(wxString::FromUTF8(a.name));
 	acc = new wxChoice(this, wxID_ANY, wxDefaultPosition, wxDefaultSize, names);
 	ok = new wxButton(this, wxID_ANY, "ok", wxDefaultPosition, wxSize(20, 20));
 	ok->SetForegroundColour(*wxWHITE);

@@ -4,6 +4,7 @@
 #include <fstream>
 #include <map>
 #include <cmath>
+#include "Account.h"
 
 using namespace std;
 
@@ -18,16 +19,18 @@ public:
 	map<string, MandCate> monthlyextotal;
 	double totalexyear;
 	double totalinyear;
-
+	double Calbalance();
 	void RefreshSummary();
 	void Calextotal();
 	void Calintotal();
 	void OnPaintper(wxPaintEvent& event);
 	void OnPaintcir(wxPaintEvent& event);
-	MySummaryPanel(wxWindow* parent, wxPanel* main_panel);
+	MySummaryPanel(wxWindow* parent, wxPanel* main_panel, std::vector<Account>* accs);
 
 private:
 	
+	std::vector<Account>* accounts;
+	double acbalance = 0;
 	wxPanel* chart;
 	wxLocale locale;
 	wxDateTime now = wxDateTime::Now();

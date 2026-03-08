@@ -17,7 +17,7 @@ int MyWishlistPanel::AskAmount() {
 
 int MyWishlistPanel::AskAccount() {
 	wxArrayString ac;
-	for (const auto& a : *accounts) ac.Add(a.name);
+	for (const auto& a : *accounts) ac.Add(wxString::FromUTF8(a.name));
 	wxSingleChoiceDialog dlg(this, "Account you take from: ", "Accounts", ac);
 	if (dlg.ShowModal() == wxID_OK) return dlg.GetSelection();
 	else return 0;

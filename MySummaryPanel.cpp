@@ -2,7 +2,13 @@
 
 using namespace std;
 
-
+double MySummaryPanel::Calbalance() {
+	acbalance = 0;
+	for (const auto& acc : *accounts) {
+		acbalance += acc.balance;
+	}
+	return acbalance;
+}
 
 void MySummaryPanel::Calextotal() {
 	monthlyextotal.clear();
@@ -157,8 +163,8 @@ void MySummaryPanel::OnPaintcir(wxPaintEvent& event) {
 	
 }
 
-MySummaryPanel::MySummaryPanel(wxWindow* parent, wxPanel* main_panel)
-	:wxPanel(parent, wxID_ANY)
+MySummaryPanel::MySummaryPanel(wxWindow* parent, wxPanel* main_panel, std::vector<Account>* accs)
+	:wxPanel(parent, wxID_ANY), accounts(accs)
 {
 	locale.Init(wxLANGUAGE_THAI);
 	Calintotal();
@@ -188,7 +194,7 @@ MySummaryPanel::MySummaryPanel(wxWindow* parent, wxPanel* main_panel)
 	wxString extexttt = wxString::Format("%.2f", extt);
 	ttexpense = new wxStaticText(this, wxID_ANY, L"รายจ่ายทั้งหมด: "+extexttt+L" บาท");
 	ttexpense->SetForegroundColour(*wxWHITE);
-	double ttm = intt - extt;
+	double ttm = Calbalance() + intt - extt;
 	wxString ttmtext = wxString::Format("%.2f", ttm);
 	tt = new wxStaticText(this, wxID_ANY, L"เงินคงเหลือสุทธิ: " + ttmtext);
 	tt->SetForegroundColour(*wxWHITE);
@@ -243,7 +249,7 @@ void MySummaryPanel::RefreshSummary() {
 			extt += pair.second;
 	}
 
-	double net = intt - extt;
+	double net = Calbalance() + intt - extt;
 
 	ttincome->SetLabel(
 		L"รายได้ทั้งหมด : " + wxString::Format("%.2f", intt) + L" บาท");
@@ -252,7 +258,7 @@ void MySummaryPanel::RefreshSummary() {
 		L"รายจ่ายทั้งหมด: " + wxString::Format("%.2f", extt) + L" บาท");
 
 	tt->SetLabel(
-		L"เงินคงเหลือสุทธิ: " + wxString::Format("%.2f", net));
+		L"เงินคงเหลือสุทธิ: " + wxString::Format("%.2f", net) + L" บาท");
 	percent->Refresh();
 	chart->Refresh();
 }

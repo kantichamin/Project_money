@@ -81,7 +81,7 @@ listBox::listBox(wxScrolledWindow* parent, wxBoxSizer* mainSizer, std::vector<Ac
 	if (cate->IsEmpty()) cate->Hide();
 
 	wxArrayString names;
-	for (const auto& a : *accounts) names.Add(a.name);
+	for (const auto& a : *accounts) names.Add(wxString::FromUTF8(a.name));
 
 	choice = new wxChoice(this, wxID_ANY, wxDefaultPosition, wxDefaultSize, names);
 

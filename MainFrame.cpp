@@ -9,7 +9,8 @@ void MainFrame::Refreshinfo() {
 
 	ttin = inandexPanel->Summary_panel->totalinyear;
 	ttex = inandexPanel->Summary_panel->totalexyear;
-	net = ttin - ttex;
+	balance = inandexPanel->Summary_panel->Calbalance();
+	net = balance + ttin - ttex;
 
 	incomeText->SetLabel(wxString::Format(L"+ ฿ %.2f", ttin));
 	expenseText->SetLabel(wxString::Format(L"- ฿ %.2f", ttex));

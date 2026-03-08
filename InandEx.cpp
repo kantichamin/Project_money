@@ -23,9 +23,12 @@ int InandEx::AskBalance() {
 
 void InandEx::LoadAccounts() {
     ifstream accountfile("accounts.txt");
-    string name;
+    string line,name;
     double balance;
-    while (accountfile >> name >> balance) {
+    while (getline(accountfile,line)) {
+		int pos = line.find("|");
+		name = line.substr(0, pos);
+		balance = wxAtof(line.substr(pos + 1));
         accounts.emplace_back(name, balance);
         AccountBox* box = new AccountBox(accScroll, accountSizer, &accounts,accounts.size()-1);
         boxes.push_back(box);
@@ -56,7 +59,7 @@ void InandEx::LoadAccounts() {
 void InandEx::SaveAccounts() {
     ofstream accountfile("accounts.txt");
     for (const Account& acc : accounts)
-        accountfile << acc.name << " " << acc.balance << "\n";
+        accountfile << acc.name << "|" << acc.balance << "\n";
     
     
 
@@ -110,7 +113,7 @@ InandEx::InandEx(wxWindow* parent, wxPanel* main_panel)
 
     Keep_panel = new MyKeepPanel(this,panel, &accounts, &boxes);
     Wish_panel = new MyWishlistPanel(this, panel, &accounts, &boxes);
-    Summary_panel = new MySummaryPanel(this, panel);
+    Summary_panel = new MySummaryPanel(this, panel,&accounts);
     panel->Show(true);
     Keep_panel->Show(false);
     Wish_panel->Show(false);
@@ -336,6 +339,8 @@ InandEx::InandEx(wxWindow* parent, wxPanel* main_panel)
         mainpanel->Show();
         MainFrame* frame = (MainFrame*)mainpanel->GetParent();
 		frame->Refreshinfo();
+        frame->Refresh();
+        frame->Update();
 		frame->Layout();
         });
 

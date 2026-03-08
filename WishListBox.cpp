@@ -1,4 +1,4 @@
-#include "WishListBox.h"
+﻿#include "WishListBox.h"
 
 
 WishListBox::WishListBox(wxScrolledWindow* parent, wxBoxSizer* mainSizer, std::vector<Account>* accs, std::vector<AccountBox*>* bxs,WishList* g) 
@@ -7,7 +7,7 @@ WishListBox::WishListBox(wxScrolledWindow* parent, wxBoxSizer* mainSizer, std::v
 	Goal = new wxStaticText(this, wxID_ANY, goals->wish);
 	Goal->SetForegroundColour(*wxWHITE);
 	wxString m = wxString::Format("%.2f", goals->amount);
-	Amount = new wxStaticText(this, wxID_ANY, "Goal " + m + " from " + (*accounts)[goals->accountindex].name);
+	Amount = new wxStaticText(this, wxID_ANY, "Goal " + m + " from " + wxString::FromUTF8((*accounts)[goals->accountindex].name));
 	Amount->SetForegroundColour(*wxWHITE);
 	Saved = new wxStaticText(this, wxID_ANY, "Saved ");
 	Saved->SetForegroundColour(*wxWHITE);

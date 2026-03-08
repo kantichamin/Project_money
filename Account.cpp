@@ -1,4 +1,4 @@
-#include "Account.h"
+﻿#include "Account.h"
 
 Account::Account(const wxString& n, double b)
     : name(n), balance(b) 

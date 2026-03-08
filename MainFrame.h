@@ -18,6 +18,7 @@ private:
     double net;
     double ttex;
     double ttin;
+	double balance;
     wxPanel* mainPanel;
     wxListCtrl* m_listCtrl;
     InandEx* inandexPanel;
