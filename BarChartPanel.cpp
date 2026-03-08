@@ -25,6 +25,7 @@ void BarChartPanel::OnPaint(wxPaintEvent& evt)
     dc.SetBackground(wxBrush(wxColour(30, 30, 30)));
     dc.Clear();
 
+    // ข้อมูลกราฟ
     double values[5] = { income, expense, net, deduction, tax };
 
     wxColour colors[5] = {
