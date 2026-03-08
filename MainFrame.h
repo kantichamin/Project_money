@@ -2,6 +2,8 @@
 #include <wx/wx.h>
 #include <wx/listctrl.h>
 #include "InandEx.h"
+#include "Invest.h"
+#include "BarChartPanel.h"
 
 class MainFrame : public wxFrame
 {
@@ -22,4 +24,6 @@ private:
     wxPanel* mainPanel;
     wxListCtrl* m_listCtrl;
     InandEx* inandexPanel;
+    Invest* investPanel;
+    BarChartPanel* chart;
 };

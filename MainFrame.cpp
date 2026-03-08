@@ -15,6 +15,14 @@ void MainFrame::Refreshinfo() {
 	incomeText->SetLabel(wxString::Format(L"+ ฿ %.2f", ttin));
 	expenseText->SetLabel(wxString::Format(L"- ฿ %.2f", ttex));
 	netText->SetLabel(wxString::Format(L"฿ %.2f", net));
+
+	chart->income = ttin;
+	chart->expense = ttex;
+	chart->net = net;
+	chart->deduction = 0;
+	chart->tax = 8900;
+
+	chart->Refresh();
 }
 
 void MainFrame::OnClose(wxCloseEvent& event) {
@@ -44,6 +52,9 @@ MainFrame::MainFrame(const wxString& title)
 	//หน้าอื่นๆ
 	inandexPanel = new InandEx(this, mainPanel);
 	inandexPanel->Hide();
+
+	investPanel = new Invest(this, mainPanel);
+	investPanel->Hide();
 
 	//หัวข้อแอป
 	wxStaticText* header = new wxStaticText(mainPanel, wxID_ANY, "Rainy Day");
@@ -77,7 +88,7 @@ MainFrame::MainFrame(const wxString& title)
 	// ฝั่งซ้าย สรุปตัวเลข
 	wxStaticBoxSizer* leftBox = new wxStaticBoxSizer(wxVERTICAL, mainPanel, L" สรุปการเงินและลดหย่อน (Financial & Deduction Summary) ");
 	leftBox->GetStaticBox()->SetForegroundColour(*wxWHITE);
-	leftBox->SetMinSize(wxSize(650, -1));
+	leftBox->SetMinSize(wxSize(450, -1));
 
 
 	wxBoxSizer* row1 = new wxBoxSizer(wxHORIZONTAL);
@@ -85,7 +96,7 @@ MainFrame::MainFrame(const wxString& title)
 	incomeText = new wxStaticText(mainPanel, wxID_ANY, L"+ ฿ 0");
 	incomeText->SetForegroundColour(wxColour(100, 255, 100));
 	incomeText->SetFont(wxFont(14, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_BOLD));
-	lbl1->SetForegroundColour(*wxWHITE);
+	lbl1->SetForegroundColour(wxColour(100, 255, 100));
 	lbl1->SetFont(wxFont(14, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL));
 	row1->Add(lbl1, 0, wxALL, 5);
 	row1->Add(incomeText, 0, wxALL, 5);
@@ -94,9 +105,9 @@ MainFrame::MainFrame(const wxString& title)
 	wxBoxSizer* row2 = new wxBoxSizer(wxHORIZONTAL);
 	wxStaticText* lbl2 = new wxStaticText(mainPanel, wxID_ANY, L"รายจ่ายรวม:");
 	expenseText = new wxStaticText(mainPanel, wxID_ANY, L"+ ฿ 0");
-	expenseText->SetForegroundColour(wxColour(100, 255, 100));
+	expenseText->SetForegroundColour(wxColour(225, 100, 100));
 	expenseText->SetFont(wxFont(14, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_BOLD));
-	lbl2->SetForegroundColour(*wxWHITE);
+	lbl2->SetForegroundColour(wxColour(255, 100, 100));
 	lbl2->SetFont(wxFont(14, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL));
 	row2->Add(lbl2, 0, wxALL, 5);
 	row2->Add(expenseText, 0, wxALL, 5);
@@ -107,7 +118,7 @@ MainFrame::MainFrame(const wxString& title)
 	netText = new wxStaticText(mainPanel, wxID_ANY, L"+ ฿ 0");
 	netText->SetForegroundColour(wxColour(*wxWHITE));
 	netText->SetFont(wxFont(14, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_BOLD));
-	lbl3->SetForegroundColour(wxColour(255, 100, 100));
+	lbl3->SetForegroundColour(wxColour(*wxWHITE));
 	lbl3->SetFont(wxFont(14, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL));
 	row3->Add(lbl3, 0, wxALL, 5);
 	row3->Add(netText, 0, wxALL, 5);
@@ -118,7 +129,7 @@ MainFrame::MainFrame(const wxString& title)
 	taxText = new wxStaticText(mainPanel, wxID_ANY, L"+ ฿ 0");
 	taxText->SetForegroundColour(wxColour(100, 200, 255));
 	taxText->SetFont(wxFont(14, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_BOLD));
-	lbl4->SetForegroundColour(*wxWHITE);
+	lbl4->SetForegroundColour(wxColour(100, 200, 255));
 	lbl4->SetFont(wxFont(14, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL));
 	row4->Add(lbl4, 0, wxALL, 5);
 	row4->Add(taxText, 0, wxALL, 5);
@@ -149,42 +160,34 @@ MainFrame::MainFrame(const wxString& title)
 
 	mainSizer->Add(midSizer, 0, wxEXPAND);
 
-	// ตารางด้านล่าง
-	wxStaticBoxSizer* tableBox = new wxStaticBoxSizer(wxVERTICAL, mainPanel, L" ตารางรายการล่าสุด (Recent Transactions) ");
-	tableBox->GetStaticBox()->SetForegroundColour(*wxWHITE);
+	//แผนภูมิ
+	chart = new BarChartPanel(mainPanel);
+	chart->SetMinSize(wxSize(700, 350));
 
-	m_listCtrl = new wxListCtrl(mainPanel, wxID_ANY, wxDefaultPosition, wxSize(620, 350), wxLC_REPORT);
-	m_listCtrl->SetBackgroundColour(wxColour(45, 45, 45));
-	m_listCtrl->SetForegroundColour(*wxWHITE);
-
-	m_listCtrl->InsertColumn(0, L"วันที่", wxLIST_FORMAT_LEFT, 100);
-	m_listCtrl->InsertColumn(1, L"รายละเอียด", wxLIST_FORMAT_LEFT, 250);
-	m_listCtrl->InsertColumn(2, L"ประเภท", wxLIST_FORMAT_LEFT, 130);
-	m_listCtrl->InsertColumn(3, L"จำนวนเงิน", wxLIST_FORMAT_RIGHT, 140);
-
-	// เติมข้อมูลตัวอย่าง
-	long i = m_listCtrl->InsertItem(0, L"02/03/2026");
-	m_listCtrl->SetItem(i, 1, L"เงินเดือน");
-	m_listCtrl->SetItem(i, 2, L"รายรับ");
-	m_listCtrl->SetItem(i, 3, L"+ 25,000.00");
-
-	tableBox->Add(m_listCtrl, 0, wxEXPAND | wxALL, 5);
-	mainSizer->Add(tableBox, 0, wxALIGN_LEFT | wxLEFT | wxALL, 20);
-
+	mainSizer->Add(chart, 1, wxEXPAND | wxALL, 10);;
 	mainPanel->SetSizer(mainSizer);
 
 	// เชื่อมหน้าอื่นเมื่อกดปุ่ม
 
 	inandexBtn->Bind(wxEVT_BUTTON, [this](wxCommandEvent&) {
 		mainPanel->Hide();
+		investPanel->Hide();
 		inandexPanel->Show();
-		this->Layout();
+		Layout();
+		});
+	
+	InvestBtn->Bind(wxEVT_BUTTON, [this](wxCommandEvent&) {
+		mainPanel->Hide();
+		inandexPanel->Hide();
+		investPanel->Show();
+		Layout();
 		});
 
 	// จัดหน้า
 	wxBoxSizer* frameSizer = new wxBoxSizer(wxVERTICAL);
 	frameSizer->Add(mainPanel, 1, wxEXPAND);
 	frameSizer->Add(inandexPanel, 1, wxEXPAND);
+	frameSizer->Add(investPanel, 1, wxEXPAND);
 	this->SetSizer(frameSizer);
 
 	Refreshinfo();

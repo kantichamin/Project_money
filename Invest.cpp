@@ -349,6 +349,10 @@ Invest::Invest(wxWindow* parent, wxPanel* main_panel): wxPanel(parent, wxID_ANY)
 
 	main->SetSizer(allsizer);
 	sent->Hide();
+	wxBoxSizer* rootSizer = new wxBoxSizer(wxVERTICAL);
+	rootSizer->Add(main, 1, wxEXPAND);
+
+	this->SetSizer(rootSizer);
 	Layout();
 }
 
