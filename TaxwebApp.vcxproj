@@ -19,14 +19,38 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Account.h" />
+    <ClInclude Include="AccountBox.h" />
     <ClInclude Include="App.h" />
+    <ClInclude Include="BarChartPanel.h" />
     <ClInclude Include="CustomDonutChart.h" />
+    <ClInclude Include="InandEx.h" />
+    <ClInclude Include="Invest.h" />
+    <ClInclude Include="listBox.h" />
     <ClInclude Include="MainFrame.h" />
+    <ClInclude Include="MyKeepPanel.h" />
+    <ClInclude Include="MySummaryPanel.h" />
+    <ClInclude Include="MyWishlistPanel.h" />
+    <ClInclude Include="Quiz.h" />
+    <ClInclude Include="WishList.h" />
+    <ClInclude Include="WishListBox.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Account.cpp" />
+    <ClCompile Include="AccountBox.cpp" />
     <ClCompile Include="App.cpp" />
+    <ClCompile Include="BarChartPanel.cpp" />
     <ClCompile Include="CustomDonutChart.cpp" />
+    <ClCompile Include="InandEx.cpp" />
+    <ClCompile Include="Invest.cpp" />
+    <ClCompile Include="listBox.cpp" />
     <ClCompile Include="MainFrame.cpp" />
+    <ClCompile Include="MyKeepPanel.cpp" />
+    <ClCompile Include="MySummaryPanel.cpp" />
+    <ClCompile Include="MyWishlistPanel.cpp" />
+    <ClCompile Include="Quiz.cpp" />
+    <ClCompile Include="WishList.cpp" />
+    <ClCompile Include="WishListBox.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>18.0</VCProjectVersion>
@@ -84,7 +108,7 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>UNICODE;_UNICODE;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <AdditionalIncludeDirectories>$(wxwin)\include\msvc;$(wxwin)\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
@@ -100,7 +124,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>UNICODE;_UNICODE;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <AdditionalIncludeDirectories>$(wxwin)\include\msvc;$(wxwin)\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
@@ -114,7 +138,7 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>UNICODE;_UNICODE;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <AdditionalIncludeDirectories>$(wxwin)\include\msvc;$(wxwin)\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
@@ -132,7 +156,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>UNICODE;_UNICODE;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <AdditionalIncludeDirectories>$(wxwin)\include\msvc;$(wxwin)\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
