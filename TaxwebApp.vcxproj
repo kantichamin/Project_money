@@ -26,11 +26,16 @@
     <ClInclude Include="InandEx.h" />
     <ClInclude Include="Invest.h" />
     <ClInclude Include="listBox.h" />
+    <ClInclude Include="main.h" />
     <ClInclude Include="MainFrame.h" />
     <ClInclude Include="MyKeepPanel.h" />
     <ClInclude Include="MySummaryPanel.h" />
     <ClInclude Include="MyWishlistPanel.h" />
     <ClInclude Include="Quiz.h" />
+    <ClInclude Include="TaxFam.h" />
+    <ClInclude Include="TaxFund.h" />
+    <ClInclude Include="TaxInsurance.h" />
+    <ClInclude Include="TaxOther.h" />
     <ClInclude Include="WishList.h" />
     <ClInclude Include="WishListBox.h" />
   </ItemGroup>
@@ -42,11 +47,16 @@
     <ClCompile Include="InandEx.cpp" />
     <ClCompile Include="Invest.cpp" />
     <ClCompile Include="listBox.cpp" />
+    <ClCompile Include="main.cpp" />
     <ClCompile Include="MainFrame.cpp" />
     <ClCompile Include="MyKeepPanel.cpp" />
     <ClCompile Include="MySummaryPanel.cpp" />
     <ClCompile Include="MyWishlistPanel.cpp" />
     <ClCompile Include="Quiz.cpp" />
+    <ClCompile Include="TaxFam.cpp" />
+    <ClCompile Include="TaxFund.cpp" />
+    <ClCompile Include="TaxInsurance.cpp" />
+    <ClCompile Include="TaxOther.cpp" />
     <ClCompile Include="WishList.cpp" />
     <ClCompile Include="WishListBox.cpp" />
   </ItemGroup>

@@ -4,6 +4,7 @@
 #include "InandEx.h"
 #include "Invest.h"
 #include "BarChartPanel.h"
+#include "main.h"
 
 class MainFrame : public wxFrame
 {
@@ -11,7 +12,9 @@ public:
 	void Refreshinfo();
     void OnClose(wxCloseEvent& event);
     MainFrame(const wxString& title);
-
+    main* taxpanel;
+    wxPanel* mainPanel;
+    
 private:
     wxStaticText* taxText;
     wxStaticText* incomeText;
@@ -21,9 +24,11 @@ private:
     double ttex;
     double ttin;
 	double balance;
-    wxPanel* mainPanel;
+    
     wxListCtrl* m_listCtrl;
     InandEx* inandexPanel;
     Invest* investPanel;
     BarChartPanel* chart;
+    wxPanel* taxPanel;
+    
 };

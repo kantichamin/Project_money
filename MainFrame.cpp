@@ -9,6 +9,7 @@ void MainFrame::Refreshinfo() {
 
 	ttin = inandexPanel->Summary_panel->totalinyear;
 	ttex = inandexPanel->Summary_panel->totalexyear;
+
 	balance = inandexPanel->Summary_panel->Calbalance();
 	net = balance + ttin - ttex;
 
@@ -55,6 +56,9 @@ MainFrame::MainFrame(const wxString& title)
 
 	investPanel = new Invest(this, mainPanel);
 	investPanel->Hide();
+
+	taxpanel = new main(this, mainPanel);
+	taxpanel->Hide();
 
 	//หัวข้อแอป
 	wxStaticText* header = new wxStaticText(mainPanel, wxID_ANY, "Rainy Day");
@@ -124,39 +128,40 @@ MainFrame::MainFrame(const wxString& title)
 	row3->Add(netText, 0, wxALL, 5);
 	leftBox->Add(row3, 0, wxEXPAND);
 
-	wxBoxSizer* row4 = new wxBoxSizer(wxHORIZONTAL);
+	double t = taxpanel->tt;
+	/*wxBoxSizer* row4 = new wxBoxSizer(wxHORIZONTAL);
 	wxStaticText* lbl4 = new wxStaticText(mainPanel, wxID_ANY, L"รวมรายการลดหย่อนภาษี:");
-	taxText = new wxStaticText(mainPanel, wxID_ANY, L"+ ฿ 0");
+	taxText = new wxStaticText(mainPanel, wxID_ANY,wxString::Format(L"+ ฿ %.2f",t));
 	taxText->SetForegroundColour(wxColour(100, 200, 255));
 	taxText->SetFont(wxFont(14, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_BOLD));
 	lbl4->SetForegroundColour(wxColour(100, 200, 255));
 	lbl4->SetFont(wxFont(14, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL));
 	row4->Add(lbl4, 0, wxALL, 5);
 	row4->Add(taxText, 0, wxALL, 5);
-	leftBox->Add(row4, 0, wxEXPAND);
+	leftBox->Add(row4, 0, wxEXPAND);*/
 
 	midSizer->Add(leftBox, 1, wxEXPAND | wxALL, 10);
 
-	// ฝั่งขวา กราฟวงกลมและช่องภาษี
-	wxBoxSizer* rightBox = new wxBoxSizer(wxVERTICAL);
+	// ฝั่งขวาช่องภาษี
+	//wxBoxSizer* rightBox = new wxBoxSizer(wxVERTICAL);
 
 	// ช่องภาษีสีส้ม (ด้านล่างกราฟ)
-	wxPanel* taxPanel = new wxPanel(mainPanel);
+	/*taxPanel = new wxPanel(mainPanel);
 	taxPanel->SetBackgroundColour(wxColour(40, 40, 40));
 	wxBoxSizer* tSizer = new wxBoxSizer(wxVERTICAL);
 	wxStaticText* tTitle = new wxStaticText(taxPanel, wxID_ANY, L"ยอดภาษีที่ต้องจ่ายรวมรายปี");
 	tTitle->SetForegroundColour(wxColour(255, 165, 0));
 	wxStaticText* tVal = new wxStaticText(taxPanel, wxID_ANY, L"- ฿ 8,900.00");
 	tVal->SetForegroundColour(wxColour(255, 165, 0));
-	tVal->SetFont(wxFont(22, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_BOLD));
+	tVal->SetFont(wxFont(22, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_BOLD));*/
 
-	tSizer->Add(tTitle, 0, wxALIGN_CENTER | wxTOP, 10);
+	/*tSizer->Add(tTitle, 0, wxALIGN_CENTER | wxTOP, 10);
 	tSizer->Add(tVal, 0, wxALIGN_CENTER | wxBOTTOM, 10);
-	taxPanel->SetSizer(tSizer);
+	taxPanel->SetSizer(tSizer);*/
 
-	rightBox->AddStretchSpacer();
-	rightBox->Add(taxPanel, 0, wxEXPAND | wxTOP, 20); // ขยับลงมาให้พอดี
-	midSizer->Add(rightBox, 1, wxEXPAND | wxALL, 30);
+	//rightBox->AddStretchSpacer();
+	//rightBox->Add(taxPanel, 0, wxEXPAND | wxTOP, 20); // ขยับลงมาให้พอดี
+	//midSizer->Add(rightBox, 1, wxEXPAND | wxALL, 30);
 
 	mainSizer->Add(midSizer, 0, wxEXPAND);
 
@@ -182,12 +187,20 @@ MainFrame::MainFrame(const wxString& title)
 		investPanel->Show();
 		Layout();
 		});
+	taxBtn->Bind(wxEVT_BUTTON, [this](wxCommandEvent&) {
+		mainPanel->Hide();
+		inandexPanel->Hide();
+		investPanel->Hide();
+		taxpanel->Show();
+		Layout();
+		});
 
 	// จัดหน้า
 	wxBoxSizer* frameSizer = new wxBoxSizer(wxVERTICAL);
 	frameSizer->Add(mainPanel, 1, wxEXPAND);
 	frameSizer->Add(inandexPanel, 1, wxEXPAND);
 	frameSizer->Add(investPanel, 1, wxEXPAND);
+	frameSizer->Add(taxpanel, 1, wxEXPAND);
 	this->SetSizer(frameSizer);
 
 	Refreshinfo();
