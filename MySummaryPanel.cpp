@@ -223,6 +223,7 @@ MySummaryPanel::MySummaryPanel(wxWindow* parent, wxPanel* main_panel, std::vecto
 	mainSizer->Add(tt, 0, wxLEFT, 30);
 	mainSizer->AddSpacer(5);
 	mainSizer->Add(percent, 0, wxLEFT, 30);
+	mainSizer->AddSpacer(10);
 	wxBoxSizer* graph = new wxBoxSizer(wxHORIZONTAL);
 	graph->Add(chart, 1, wxEXPAND);
 
