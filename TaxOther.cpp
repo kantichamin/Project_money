@@ -35,7 +35,9 @@ void TaxOther::UpdateN() {
 	//n4 += (numBefore * 30000) + (numAfter * 60000) + (num * 60000);
 	n4 = numBefore + numAfter + num;
 
-	
+	main* frame = dynamic_cast<main*>(wxGetTopLevelParent(this));
+	if (frame) frame->FamilyChicken = n4;
+
 	if (mainpanel) mainpanel->FamilyChicken = n4;
 
 }
@@ -51,7 +53,8 @@ TaxOther::TaxOther(wxWindow* parent, main* main_panel, TaxInsurance* prevPanel) 
 	wxPanel* governmenttextanswer = new wxPanel(panelother, wxID_ANY);
 	wxPanel* savetextanswer = new wxPanel(panelother, wxID_ANY);
 	wxPanel* teachertextanswer = new wxPanel(panelother, wxID_ANY);
-	
+	wxPanel* success = new wxPanel(panelother, wxID_ANY);
+
 
 
 	//---------------------------------------
@@ -118,6 +121,9 @@ TaxOther::TaxOther(wxWindow* parent, main* main_panel, TaxInsurance* prevPanel) 
 	fourROW->Add(teachertext, 1, wxALL | wxALIGN_CENTER_VERTICAL, 10);
 	teachertextanswer->SetSizer(fourROW);
 
+	wxBoxSizer* successSizer = new wxBoxSizer(wxHORIZONTAL);
+	successSizer->Add(summarize, 0, wxALL | wxALIGN_CENTER, 10);
+	success->SetSizer(successSizer);
 
 	//------------------------------
 
@@ -164,6 +170,11 @@ TaxOther::TaxOther(wxWindow* parent, main* main_panel, TaxInsurance* prevPanel) 
 
 	summarize->Bind(wxEVT_BUTTON, &TaxOther::OnSummarize, this);
 
+			totle->SetLabel(wxString::Format(wxString::FromUTF8("%.2f"), tax));
+			totle->Show();
+			panelother->Layout();
+		}
+		});
 
 	wxBoxSizer* frameSizer = new wxBoxSizer(wxVERTICAL);
 	frameSizer->Add(panelother, 1, wxEXPAND);

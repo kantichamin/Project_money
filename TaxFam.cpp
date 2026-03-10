@@ -379,7 +379,8 @@ TaxFam::TaxFam(wxWindow* parent, main* main_panel):wxPanel(parent, wxID_ANY) {
 	cbchrima2->Bind(wxEVT_CHECKBOX, [=](wxCommandEvent&) { UpdateN(); });
 	cbchrima3->Bind(wxEVT_CHECKBOX, [=](wxCommandEvent&) { UpdateN(); });
 
-	
+	myChoice->Bind(wxEVT_LISTBOX, [=](wxCommandEvent&) { UpdateN(); });
+
 
 
 	ch2561bf->Bind(wxEVT_TEXT, [=](wxCommandEvent&) { UpdateN(); });
@@ -395,6 +396,7 @@ TaxFam::TaxFam(wxWindow* parent, main* main_panel):wxPanel(parent, wxID_ANY) {
 		this->Hide();
 		mainpanel->Show();
 		mainpanel->GetParent()->Layout();
+		this->Layout();
 		});
 
 	next->Bind(wxEVT_BUTTON, [this](wxCommandEvent&) {
