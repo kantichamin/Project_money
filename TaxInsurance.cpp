@@ -13,7 +13,9 @@ void TaxInsurance::UpdateN() {
 	paranttext->GetValue().ToDouble(&num);
 	n3 += (numBefore * 30000) + (numAfter * 60000) + (num * 60000);
 
-	
+	main* frame = dynamic_cast<main*>(wxGetTopLevelParent(this));
+	if (frame) frame->FamilySwan = n3;
+
 	if (mainpanel) mainpanel->FamilySwan = n3;
 
 }

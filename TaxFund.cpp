@@ -12,7 +12,9 @@ void TaxFund::UpdateN() {
 	livetext->GetValue().ToDouble(&num);
 	n2 += (numBefore * 30000) + (numAfter * 60000) + (num * 60000);
 
-	
+	main* frame = dynamic_cast<main*>(wxGetTopLevelParent(this));
+	if (frame) frame->FamilyDuck = n2;
+
 	if (mainpanel) mainpanel->FamilyDuck = n2;
 
 }

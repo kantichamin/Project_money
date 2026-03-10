@@ -26,22 +26,20 @@ void BarChartPanel::OnPaint(wxPaintEvent& evt)
     dc.Clear();
 
     // ข้อมูลกราฟ
-    double values[5] = { income, expense, net, deduction, tax };
+    double values[5] = { income, expense, net };
 
     wxColour colors[5] = {
         wxColour(100,255,100), 
         wxColour(255,100,100),
-        wxColour(255,255,255),
-        wxColour(100,200,255),
-        wxColour(255,165,0) 
+        wxColour(255,255,255)
+        
     };
 
     wxString labels[5] = {
         L"รายรับ",
         L"รายจ่าย",
         L"ยอดคงเหลือ"
-        L"ค่าลดหย่อน",
-        L"ภาษี"
+        
     };
 
     int marginLeft = 60;

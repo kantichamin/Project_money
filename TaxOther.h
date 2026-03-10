@@ -11,6 +11,7 @@ public:
 
 	double n4 = 0.0;
 private:
+	double tax;
 	TaxInsurance* prev;
 	wxButton* summarize;
 	main* mainpanel;

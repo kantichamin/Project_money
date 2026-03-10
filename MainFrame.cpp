@@ -90,7 +90,7 @@ MainFrame::MainFrame(const wxString& title)
 	wxBoxSizer* midSizer = new wxBoxSizer(wxHORIZONTAL);
 
 	// ฝั่งซ้าย สรุปตัวเลข
-	wxStaticBoxSizer* leftBox = new wxStaticBoxSizer(wxVERTICAL, mainPanel, L" สรุปการเงินและลดหย่อน (Financial & Deduction Summary) ");
+	wxStaticBoxSizer* leftBox = new wxStaticBoxSizer(wxVERTICAL, mainPanel, L" สรุปการเงิน (Financial) ");
 	leftBox->GetStaticBox()->SetForegroundColour(*wxWHITE);
 	leftBox->SetMinSize(wxSize(450, -1));
 

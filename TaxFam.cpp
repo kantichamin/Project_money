@@ -290,6 +290,7 @@ TaxFam::TaxFam(wxWindow* parent, main* main_panel):wxPanel(parent, wxID_ANY) {
 
 	//-------------------------------------------------------
 	auto toggleChildDetails = [=](bool show) {
+		
 		child2->Show(show);
 		childbefore->Show(show);
 		childafter->Show(show);
@@ -299,6 +300,7 @@ TaxFam::TaxFam(wxWindow* parent, main* main_panel):wxPanel(parent, wxID_ANY) {
 
 
 	cbchildT->Bind(wxEVT_CHECKBOX, [=](wxCommandEvent& event){
+		
 		if (event.IsChecked()) {
 			cbchildF->SetValue(false);
 			toggleChildDetails(true);
@@ -306,6 +308,7 @@ TaxFam::TaxFam(wxWindow* parent, main* main_panel):wxPanel(parent, wxID_ANY) {
 		else {
 			toggleChildDetails(false);
 		}
+		UpdateN();
 		});
 
 	cbchildF->Bind(wxEVT_CHECKBOX, [=](wxCommandEvent& event) {
@@ -364,6 +367,7 @@ TaxFam::TaxFam(wxWindow* parent, main* main_panel):wxPanel(parent, wxID_ANY) {
 			childinfrim->Show(false);
 			childhowinfrim->Clear();
 		}
+		UpdateN();
 		panelfam->Layout();
 		});
 
@@ -374,12 +378,13 @@ TaxFam::TaxFam(wxWindow* parent, main* main_panel):wxPanel(parent, wxID_ANY) {
 	cbchri1->Bind(wxEVT_CHECKBOX, [=](wxCommandEvent&) { UpdateN(); });
 	cbchri2->Bind(wxEVT_CHECKBOX, [=](wxCommandEvent&) { UpdateN(); });
 	cbchri4->Bind(wxEVT_CHECKBOX, [=](wxCommandEvent&) { UpdateN(); });
-	cbchildT->Bind(wxEVT_CHECKBOX, [=](wxCommandEvent&) { UpdateN(); });
+	
 	cbchrima1->Bind(wxEVT_CHECKBOX, [=](wxCommandEvent&) { UpdateN(); });
 	cbchrima2->Bind(wxEVT_CHECKBOX, [=](wxCommandEvent&) { UpdateN(); });
 	cbchrima3->Bind(wxEVT_CHECKBOX, [=](wxCommandEvent&) { UpdateN(); });
 
-	
+	//myChoice->Bind(wxEVT_LISTBOX, [=](wxCommandEvent&) { UpdateN(); });
+
 
 
 	ch2561bf->Bind(wxEVT_TEXT, [=](wxCommandEvent&) { UpdateN(); });
@@ -395,6 +400,7 @@ TaxFam::TaxFam(wxWindow* parent, main* main_panel):wxPanel(parent, wxID_ANY) {
 		this->Hide();
 		mainpanel->Show();
 		mainpanel->GetParent()->Layout();
+		this->Layout();
 		});
 
 	next->Bind(wxEVT_BUTTON, [this](wxCommandEvent&) {
